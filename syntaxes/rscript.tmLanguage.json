@@ -1,0 +1,75 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "rscript",
+  "patterns": [
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.rscript",
+          "match": "\\b([0-9]+(\\.[0-9]*)?)\\b"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.rscript",
+          "match": "#.*"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.rscript",
+          "match": "\\b(if|then|else|loop|while|for|in|break|import|as)\\b"
+        },
+        {
+          "name": "keyword.rscript",
+          "match": "\\b(pub|fn|let|True|False|None|self)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.rscript",
+          "match": "\\b(\\w+)(?=(\\W*)(\\(.*\\)))"
+        },
+        {
+          "name": "entity.name.function.rscript",
+          "match": "\\b(\\w+)(?=(\\s*=\\s*\\|))"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.rscript",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.rscript",
+          "match": "\\\\."
+        }
+      ]
+    }
+  },
+  "scopeName": "source.rscript"
+}

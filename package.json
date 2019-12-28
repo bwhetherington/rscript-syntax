@@ -1,0 +1,25 @@
+{
+    "name": "rscript",
+    "displayName": "rscript",
+    "description": "",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.41.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "rscript",
+            "aliases": ["rscript", "rscript"],
+            "extensions": ["rsc"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "rscript",
+            "scopeName": "source.rscript",
+            "path": "./syntaxes/rscript.tmLanguage.json"
+        }]
+    }
+}
