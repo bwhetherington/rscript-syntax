@@ -3,27 +3,67 @@
   "name": "rscript",
   "patterns": [
     {
-      "include": "#numbers"
-    },
-    {
-      "include": "#comments"
-    },
-    {
-      "include": "#functions"
-    },
-    {
-      "include": "#keywords"
-    },
-    {
-      "include": "#strings"
+      "include": "#items"
     }
   ],
   "repository": {
-    "numbers": {
+    "items": {
+      "name": "entity.name",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#constants"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#functions"
+        }
+      ]
+    },
+    "functions": {
+      "begin": "(\\w+)\\W*\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.rscript"
+        }
+      },
+      "end": "\\)",
+      "patterns": [
+        {
+          "include": "#items"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "entity.name.type.rscript",
+          "match": "\\b([A-Z]\\w*)\\b"
+        }
+      ]
+    },
+    "constants": {
       "patterns": [
         {
           "name": "constant.numeric.rscript",
           "match": "\\b([0-9]+(\\.[0-9]*)?)\\b"
+        },
+        {
+          "name": "constant.language.rscript",
+          "match": "(True|False|None|self|super)"
         }
       ]
     },
@@ -31,7 +71,12 @@
       "patterns": [
         {
           "name": "comment.line.rscript",
-          "match": "#.*"
+          "match": "(//.*)"
+        },
+        {
+          "name": "comment.block.rscript",
+          "begin": "/\\*",
+          "end": "\\*/"
         }
       ]
     },
@@ -39,23 +84,23 @@
       "patterns": [
         {
           "name": "keyword.control.rscript",
-          "match": "\\b(if|then|else|loop|while|for|in|break|import|as)\\b"
+          "match": "\\b(return|if|else|loop|while|for|in|break|new|use|with|effect|resume|try|catch|finally)\\b"
         },
         {
           "name": "keyword.rscript",
-          "match": "\\b(pub|fn|let|True|False|None|self)\\b"
+          "match": "\\b(pub|func|let|class|type|enum)\\b"
         }
       ]
     },
-    "functions": {
+    "members": {
       "patterns": [
         {
-          "name": "entity.name.function.rscript",
-          "match": "\\b(\\w+)(?=(\\W*)(\\(.*\\)))"
-        },
-        {
-          "name": "entity.name.function.rscript",
-          "match": "\\b(\\w+)(?=(\\s*=\\s*\\|))"
+          "match": "\\.(\\w+)\\b",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.rscript"
+            }
+          }
         }
       ]
     },
